@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../common/product";
 import { ActivatedRoute } from "@angular/router";
+import {CartService} from "../../services/cart.service";
+import {CartItem} from "../../common/cart-item";
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +27,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute) { }
+    private cartService: CartService,
+    private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -97,6 +100,12 @@ export class ProductListComponent implements OnInit {
     this.thePageSize = +pageSize;
     this.thePageNumber = 1; // if page size is changed -> reset pageNumber to 1
     this.listProducts(); // refresh page
+  }
+
+  addToCart(theProduct: Product) {
+    console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
+    const theCartItem = new CartItem(theProduct);
+    this.cartService.addToCart(theCartItem);
   }
 
   private processResult() {
