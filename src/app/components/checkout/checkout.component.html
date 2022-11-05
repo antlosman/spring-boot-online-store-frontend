@@ -1,4 +1,4 @@
-<div class="main-content" page-m>
+<div class="main-content">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
       <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
@@ -43,7 +43,9 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="country">
-                  <option>TO DO</option>
+                  <option *ngFor="let country of countries" [ngValue]="countries">
+                    {{country.name}}
+                  </option>
                 </select>
               </div>
             </div>
@@ -108,7 +110,9 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="country">
-                  <option>TO DO</option>
+                  <option *ngFor="let country of countries" [ngValue]="countries">
+                    {{country.name}}
+                  </option>
                 </select>
               </div>
             </div>
