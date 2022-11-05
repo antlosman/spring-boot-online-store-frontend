@@ -94,14 +94,22 @@ export class CheckoutComponent implements OnInit {
     if (_event.target.checked) {
       this.checkoutFormGroup.controls['billingAddress']
         .setValue(this.checkoutFormGroup.controls['shippingAddress'].value);
+      this.billingAddressStates = this.shippingAddressStates;
     } else {
       this.checkoutFormGroup.controls['billingAddress'].reset();
+      this.billingAddressStates = [];
     }
   }
 
   onSubmit() {
     console.log("Handling the submit button");
     console.log(this.checkoutFormGroup.get('customer')?.value);
+    console.log("The email address is " + this.checkoutFormGroup.get('customer')?.value.email);
+
+    console.log("The shipping address country is "
+      + this.checkoutFormGroup.get('shippingAddress')?.value.country.name);
+    console.log("The shipping address state is "
+      + this.checkoutFormGroup.get('shippingAddress')?.value.state.name);
   }
 
   handleMonthsAndYears() {
@@ -136,8 +144,8 @@ export class CheckoutComponent implements OnInit {
     const countryCode = formGroup?.value.country.code;
     const countryName = formGroup?.value.country.name;
 
-    console.log(`{formGroupName} country code: ${countryCode}`);
-    console.log(`{formGroupName} country name: ${countryName}`);
+    console.log(`${formGroupName} country code: ${countryCode}`);
+    console.log(`${formGroupName} country name: ${countryName}`);
 
     this.luv2shopFormService.getStates(countryCode).subscribe(
       data => {
