@@ -30,6 +30,21 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // remove previous data
+    this.oktaSignin.remove();
+
+    this.oktaSignin.renderEl({
+      // render element with given id (login.component.html)
+      element: '#okta-sign-in-widget'
+    },
+      (response: any) => {
+        if (response.status === 'SUCCESS') {
+          this.oktaSignin.signInWithRedirect();
+        }
+      },
+      (error: any) => {
+        throw error;
+      })
   }
 
 }
