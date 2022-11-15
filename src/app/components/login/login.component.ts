@@ -34,17 +34,17 @@ export class LoginComponent implements OnInit {
     this.oktaSignin.remove();
 
     this.oktaSignin.renderEl({
-      // render element with given id (login.component.html)
-      el: '#okta-sign-in-widget'
-    },
+        // render element with given id (login.component.html)
+        el: '#okta-sign-in-widget'}, // this name should be same as div tag id in login.component.html
       (response: any) => {
         if (response.status === 'SUCCESS') {
-          this.oktaSignin.signInWithRedirect();
+          this.oktaAuth.signInWithRedirect();
         }
       },
       (error: any) => {
         throw error;
-      })
+      }
+    );
   }
 
   ngOnDestroy() {
