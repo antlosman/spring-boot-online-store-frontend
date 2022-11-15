@@ -4,6 +4,7 @@ import { ProductService } from "../../services/product.service";
 import { ActivatedRoute } from "@angular/router";
 import {CartService} from "../../services/cart.service";
 import {CartItem} from "../../common/cart-item";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +15,8 @@ export class ProductDetailsComponent implements OnInit {
 
   product!: Product;
 
-  constructor(private productService: ProductService,
+  constructor(private location: Location,
+              private productService: ProductService,
               private cartService: CartService,
               private route: ActivatedRoute) { }
 
@@ -40,5 +42,9 @@ export class ProductDetailsComponent implements OnInit {
     const theCartItem = new CartItem(this.product);
     this.cartService.addToCart(theCartItem);
 
+  }
+
+  backClicked() {
+    this.location.back();
   }
 }
