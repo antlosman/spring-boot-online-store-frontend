@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.oktaSignin.renderEl({
       // render element with given id (login.component.html)
-      element: '#okta-sign-in-widget'
+      el: '#okta-sign-in-widget'
     },
       (response: any) => {
         if (response.status === 'SUCCESS') {
@@ -45,6 +45,10 @@ export class LoginComponent implements OnInit {
       (error: any) => {
         throw error;
       })
+  }
+
+  ngOnDestroy() {
+    this.oktaSignin.remove();
   }
 
 }
