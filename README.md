@@ -1,27 +1,58 @@
-# SpringBootOnlineStoreFrontend
+# Online Store Frontend
+* online store backend: https://github.com/antlosman/spring-boot-online-store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
+This project is made with Spring Boot and Angular.
 
-## Development server
+## Technologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Java 19
 
-## Code scaffolding
+Spring Boot 2.7.5
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Angular 13
 
-## Build
+PostgreSQL 14.5
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Features
 
-## Running unit tests
+## Home page
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+User can:
+  - view products and products categories 
+  - search products
+  - add products to shopping cart
+  - view shopping cart status (products total quantity and total price)
+  - change the product list size
+  - login/logout
 
-## Running end-to-end tests
+## Product details
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+This page opens when user clicks on a product name or picture.
 
-## Further help
+Here user can:
+  - view product description
+  - add product to shopping cart
+  - go back to product list
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Shopping cart
+
+This page opens when user clicks on a shopping cart icon.
+
+Here user can:
+  - view selected products
+  - change product quantity
+  - remove product
+  - view total quantity of products and total price
+  - go to order checkout
+  
+## Checkout page
+
+This page opens when user clicks on a checkout button.
+
+Here user can:
+  - add customer name and email
+  - add shipping and billing address
+  - add credit card details
+  - review order details and go to purchase
+  - all fields covered with validation
+
