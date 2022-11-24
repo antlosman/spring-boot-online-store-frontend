@@ -8,6 +8,7 @@
 
   <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn m-1">Logout</button>
 
-  <button routerLink="/members" class="security-btn m-1">Member</button>
+  <!-- show "member" button only if user logged in -->
+  <button *ngIf="isAuthenticated" routerLink="/members" class="security-btn m-1">Member</button>
 
 </div>
