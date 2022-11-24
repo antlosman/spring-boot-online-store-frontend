@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HttpClientModule } from "@angular/common/http";
-import { RouterModule, Routes } from "@angular/router";
+import { Router, RouterModule, Routes } from "@angular/router";
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -17,7 +17,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 
-import { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG } from "@okta/okta-angular";
+import  { OktaAuthModule, OktaCallbackComponent, OKTA_CONFIG, OktaAuthGuard } from "@okta/okta-angular";
 import { OktaAuth } from "@okta/okta-auth-js";
 
 import myAppConfig from "./config/my-app-config";
@@ -28,7 +28,17 @@ const oktaConfig = myAppConfig.oidc;
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
+function sendToLoginPage(_oktaAuth: OktaAuth, injector: Injector) {
+  // use injector to access any service available within your application
+  const router = injector.get(Router);
+  // redirect the user to your custom login page
+  router.navigate(['/login']).catch(console.error);
+}
+
 const routes: Routes = [
+  // if authenticated, give access to route, else, send to login page
+  {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard],
+                    data: {onAuthRequired: sendToLoginPage}},
   // once the user is authenticated, it will be redirected to your app
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
