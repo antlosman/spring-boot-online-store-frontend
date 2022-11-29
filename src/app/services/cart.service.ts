@@ -93,7 +93,7 @@ export class CartService {
     }
 
     console.log(`totalPrice: ${totalPriceValue.toFixed(2)},
-                 totalQuantity: ${totalPriceValue}`)
+                 totalQuantity: ${_totalQuantityValue}`)
     console.log('------')
   }
 

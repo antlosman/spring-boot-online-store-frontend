@@ -242,6 +242,9 @@ export class CheckoutComponent implements OnInit {
       + this.checkoutFormGroup.get('shippingAddress')?.value.country.name);
     console.log("The shipping address state is "
       + this.checkoutFormGroup.get('shippingAddress')?.value.state.name);
+
+    console.log("order total price: " + order.totalPrice);
+    console.log("order total quantity: " + order.totalQuantity);
   }
 
   handleMonthsAndYears() {
